@@ -1,3 +1,5 @@
+'use client'
+
 import { Upload, DollarSign, CheckCircle } from "lucide-react"
 
 const steps = [
