@@ -51,20 +51,27 @@ const [loadingTextIndex, setLoadingTextIndex] = useState(0);
   }
 
   useEffect(() => {
-    const darkModeEnabled = localStorage.getItem("theme") === "dark"
-    document.documentElement.classList.toggle("dark", darkModeEnabled)
-    setIsDark(darkModeEnabled)
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme) {
+      const darkModeEnabled = savedTheme === "dark"
+      document.documentElement.classList.toggle("dark", darkModeEnabled)
+      setIsDark(darkModeEnabled)
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      document.documentElement.classList.toggle("dark", prefersDark)
+      setIsDark(prefersDark)
+    }
   }, [])
 
   useEffect(() => {
-  if (!loading) return;
+    if (!loading) return;
 
-  const interval = setInterval(() => {
-    setLoadingTextIndex((prevIndex) => (prevIndex + 1) % loadingTexts.length);
-  }, 400);
+    const interval = setInterval(() => {
+      setLoadingTextIndex((prevIndex) => (prevIndex + 1) % loadingTexts.length);
+    }, 400);
 
-  return () => clearInterval(interval);
-}, [loading,loadingTexts.length]);
+    return () => clearInterval(interval);
+  }, [loading,loadingTexts.length]);
 
 
   const toggleTheme = () => {
