@@ -180,6 +180,14 @@ const [loadingTextIndex, setLoadingTextIndex] = useState(0);
               placeholder="Ask your question here..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  if (!loading && input.trim()) {
+                    handleSend();
+                  }
+                }
+              }}
               disabled={loading}
             />
             <Button

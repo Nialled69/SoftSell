@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 export async function POST(req: Request) {
   const { prompt } = await req.json()
 
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY
   const siteURL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   const siteTitle = process.env.NEXT_PUBLIC_SITE_TITLE || "SoftSell"
 
@@ -18,6 +18,11 @@ export async function POST(req: Request) {
       {
         model: "deepseek/deepseek-r1:free",
         messages: [
+          {
+            role: "system",
+            content:
+              "You are SoftBot, a 24x7 AI assistant working for SoftSell — a platform that helps users convert their unused software licenses and digital copyrights into real money. Your job is to answer questions clearly and confidently. Always keep answers short and solid. Speak like a real company representative. If you are asked anything out of context, say 'I cannot help you with that.'",
+          },
           {
             role: "user",
             content: prompt,
