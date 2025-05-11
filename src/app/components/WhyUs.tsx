@@ -125,7 +125,7 @@ export default function WhyUs() {
           </button>
 
           {/* Increased width and font size of carousel */}
-          <div className="w-[500px] sm:w-[600px] lg:w-[700px]" ref={sliderRef}>
+          <div className="w-[90vw] sm:w-[500px] md:w-[600px] lg:w-[700px] max-w-full" ref={sliderRef}>
             <div className="keen-slider">
               {benefits.map((item, index) => (
                 <motion.div

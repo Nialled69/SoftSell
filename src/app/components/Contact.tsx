@@ -11,6 +11,7 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", company: "", license: "", message: "" })
   const [error, setError] = useState("")
   const [spans, setSpans] = useState<React.ReactNode[]>([])
+  const MAX_MESSAGE_LENGTH = 500
   
   useEffect(() => {
         const count = 50
@@ -93,19 +94,31 @@ export default function Contact() {
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="windows">Windows</SelectItem>
+                <SelectItem value="windows">Web-solution</SelectItem>
+                <SelectItem value="app">App-solution</SelectItem>
                 <SelectItem value="office">Office Suite</SelectItem>
                 <SelectItem value="adobe">Adobe Products</SelectItem>
+                <SelectItem value="digital">Digital Assets</SelectItem>
+                <SelectItem value="others">Others</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1">
             <Label>Message</Label>
             <Textarea
               value={form.message}
-              onChange={e => setForm({ ...form, message: e.target.value })}
+              onChange={e => {
+                const value = e.target.value
+                if (value.length <= MAX_MESSAGE_LENGTH) {
+                  setForm({ ...form, message: value })
+                }
+              }}
+              className="w-full resize-none overflow-y-auto break-words break-all whitespace-pre-wrap"
             />
+            <p className="text-xs text-muted-foreground text-right">
+              {MAX_MESSAGE_LENGTH - form.message.length} characters remaining
+            </p>
           </div>
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
