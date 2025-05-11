@@ -34,7 +34,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-full h-screen bg-background overflow-hidden px-6 sm:px-10 lg:px-20 flex items-center">
-      {/* Background layer behind content */}
       <div
         className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
         style={{ overflow: "hidden" }}
@@ -42,7 +41,6 @@ export default function HeroSection() {
         {spans}
       </div>
 
-      {/* Foreground content with higher z-index */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-foreground">
           Turn Unused Software into Real Money

@@ -85,80 +85,75 @@ export default function WhyUs() {
   useEffect(() => {
     const interval = setInterval(() => {
       instanceRef.current?.next()
-    }, 4000) 
+    }, 5000) 
 
     return () => clearInterval(interval)
   }, [instanceRef])
 
   return (
     <section className="py-20 px-6 bg-background relative overflow-hidden">
-      {/* Background Spans */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{ overflow: "hidden" }}
-      >
-        {spans}
-      </div>
+  <div
+    className="absolute inset-0 z-0 pointer-events-none"
+    style={{ overflow: "hidden" }}
+  >
+    {spans}
+  </div>
 
-      {/* Foreground Content */}
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-        {/* Left Image */}
-        <div className="w-full lg:w-1/2 flex justify-center">
-          <Image
-            src="/logo-transparent.png"
-            alt="SoftSell Logo"
-            width={500}
-            height={400}
-            className="rounded-2xl object-contain"
-          />
-        </div>
+  <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+    <div className="w-full lg:w-1/2 flex justify-center">
+      <Image
+        src="/logo-transparent.png"
+        alt="SoftSell Logo"
+        width={500}
+        height={400}
+        className="rounded-2xl object-contain"
+      />
+    </div>
 
-        {/* Right Content */}
-        <div className="w-full lg:w-1/2 flex justify-center">
-          <div className="w-full bg-background p-8">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-foreground text-transparent bg-clip-text text-center mb-10">
-              Why Choose SoftSell
-            </h2>
+    <div className="w-full lg:w-1/2 flex justify-center">
+      <div className="w-full bg-background p-8">
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-foreground text-transparent bg-clip-text text-center mb-12">
+          Why Choose SoftSell
+        </h2>
 
-            <div className="flex items-center justify-center gap-2">
-              {/* Left Arrow */}
-              <button
-                onClick={() => instanceRef.current?.prev()}
-                className="p-1.5 rounded-full border hover:bg-muted transition-colors text-xs"
-              >
-                <ArrowLeft size={14} />
-              </button>
+        <div className="flex items-center justify-center gap-2">
+          <button
+            onClick={() => instanceRef.current?.prev()}
+            className="p-1.5 rounded-full border hover:bg-muted transition-colors text-xs"
+          >
+            <ArrowLeft size={14} />
+          </button>
 
-              {/* Carousel */}
-              <div className="w-[260px] sm:w-[300px]" ref={sliderRef}>
-                <div className="keen-slider">
-                  {benefits.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.2 }}
-                      className="keen-slider__slide bg-muted p-4 rounded-xl text-center"
-                    >
-                      <div className="mb-2 flex justify-center">{item.icon}</div>
-                      <h3 className="font-semibold text-base mb-1">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Arrow */}
-              <button
-                onClick={() => instanceRef.current?.next()}
-                className="p-1.5 rounded-full border hover:bg-muted transition-colors text-xs"
-              >
-                <ArrowRight size={14} />
-              </button>
+          {/* Increased width and font size of carousel */}
+          <div className="w-[500px] sm:w-[600px] lg:w-[700px]" ref={sliderRef}>
+            <div className="keen-slider">
+              {benefits.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="keen-slider__slide bg-muted p-6 rounded-xl text-center"
+                >
+                  <div className="mb-4 flex justify-center">{item.icon}</div>
+                  <h3 className="font-semibold text-xl mb-2">{item.title}</h3> {/* Increased font size */}
+                  <p className="text-base text-muted-foreground">{item.description}</p> {/* Increased font size */}
+                </motion.div>
+              ))}
             </div>
           </div>
+
+          <button
+            onClick={() => instanceRef.current?.next()}
+            className="p-1.5 rounded-full border hover:bg-muted transition-colors text-xs"
+          >
+            <ArrowRight size={14} />
+          </button>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
   )
 }
