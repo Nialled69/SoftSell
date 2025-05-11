@@ -8,7 +8,7 @@ import Testimonials from "./components/Testimonials"
 import Contact from "./components/Contact"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+// import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {motion} from "framer-motion"
 import { Sun, Moon, Bot, Send } from "lucide-react"
@@ -75,27 +75,29 @@ const [loadingTextIndex, setLoadingTextIndex] = useState(0);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="w-full flex justify-end p-4">
-        <button
-          onClick={toggleTheme}
-          className={`w-14 h-8 bg-muted rounded-full p-1 flex items-center transition-colors ${
-            isDark ? "bg-gray-700" : "bg-gray-300"
-          }`}
-        >
-          <motion.div
-            layout
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className={`w-6 h-6 rounded-full flex items-center justify-center ${
-              isDark ? "translate-x-6 bg-primary" : "translate-x-0 bg-secondary"
+      <div className="fixed top-4 right-4 z-50">
+        <div className="rounded-full border-2 border-black dark:border-white">
+          <button
+            onClick={toggleTheme}
+            className={`w-14 h-8 bg-muted rounded-full p-1 flex items-center transition-colors ${
+              isDark ? "bg-gray-700" : "bg-gray-300"
             }`}
           >
-            {isDark ? (
-              <Sun size={16} className="text-black" />
-            ) : (
-              <Moon size={16} className="text-black" />
-            )}
-          </motion.div>
-        </button>
+            <motion.div
+              layout
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                isDark ? "translate-x-6 bg-primary" : "translate-x-0 bg-secondary"
+              }`}
+            >
+              {isDark ? (
+                <Sun size={16} className="text-black" />
+              ) : (
+                <Moon size={16} className="text-black" />
+              )}
+            </motion.div>
+          </button>
+        </div>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -136,19 +138,22 @@ const [loadingTextIndex, setLoadingTextIndex] = useState(0);
       >
         <Contact />
       </motion.div>
+      
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
         className="fixed bottom-6 right-6 z-50"
       >
-        <Button
-          onClick={() => setOpen(true)}
-          variant="secondary"
-          className="rounded-full shadow-lg p-4 flex items-center justify-center"
-        >
-          <Bot className="h-5 w-5" />
-        </Button>
+        <div className="rounded-full border border-black dark:border-white inline-block">
+          <Button
+            onClick={() => setOpen(true)}
+            variant="secondary"
+            className="rounded-full shadow-lg p-4 flex items-center justify-center"
+          >
+            <Bot className="h-5 w-5" />
+          </Button>
+        </div>
       </motion.div>
 
       <Dialog open={open} onOpenChange={setOpen}>

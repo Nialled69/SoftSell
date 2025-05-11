@@ -1,12 +1,49 @@
 'use client'
 
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import React from "react"
 
 export default function HeroSection() {
+  const [spans, setSpans] = useState<React.ReactNode[]>([])
+
+  useEffect(() => {
+    const count = 50
+    const elements = []
+
+    for (let i = 0; i < count; i++) {
+      const style: React.CSSProperties = {
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${10 + Math.random() * 10}s`,
+        animationDelay: `${Math.random() * 10}s`,
+      }
+
+      elements.push(
+        <span
+          key={i}
+          className="absolute bottom-[-150px] w-[20px] h-[20px] rounded-full animate-move opacity-30"
+          style={style}
+        />
+      )
+    }
+
+    setSpans(elements)
+  }, [])
+
   return (
-    <section className="w-full bg-background py-20 text-center px-6 sm:px-10 lg:px-20">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative w-full h-screen bg-background overflow-hidden px-6 sm:px-10 lg:px-20 flex items-center">
+      {/* Background layer behind content */}
+      <div
+        className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
+        style={{ overflow: "hidden" }}
+      >
+        {spans}
+      </div>
+
+      {/* Foreground content with higher z-index */}
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-foreground">
           Turn Unused Software into Real Money
         </h1>

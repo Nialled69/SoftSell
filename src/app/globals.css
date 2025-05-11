@@ -120,3 +120,30 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    background-color: #ff3c00; /* Starting color */
+  }
+  25% {
+    transform: translate(30px, -50px) rotate(45deg);
+    background-color: #fcdc00; /* Second color */
+  }
+  50% {
+    transform: translate(-20px, 20px) rotate(180deg);
+    background-color: #00ff3c; /* Third color */
+  }
+  75% {
+    transform: translate(40px, 10px) rotate(270deg);
+    background-color: #00c5ff; /* Fourth color */
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+    background-color: #ff00f0; /* Final color */
+  }
+}
+
+.animate-move {
+  animation: move 15s ease-in-out infinite;
+}
